@@ -3,6 +3,8 @@ package Model;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import forwardSearch.Algorithm;
+
 public class RuleNode {
 	private ArrayList<Coordinates> lhs = new ArrayList<Coordinates>();
 	private String lhsCharacter;
@@ -60,12 +62,20 @@ public class RuleNode {
 				// At this point, it consists of characters
 				if (lhsStr.charAt(lhsIndex) != ')') {
 					lhsCharacter = Character.toString(lhsStr.charAt(lhsIndex));
+					
+					ArrayList<Coordinates> temp = Algorithm.getRules(lhsCharacter);
+					
+					lhs.addAll(temp);
+					
 					hasLHSChar = true;
+					System.out.println(lhsStr.charAt(lhsIndex));
 				}
 			}
 						
 			lhsIndex++;
 		}
+		
+		System.out.println("The total size is " + lhs.size()+ " for " + rhs);
 	}
 	
 	public String getRHS() {

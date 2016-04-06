@@ -11,7 +11,7 @@ import Model.Coordinates;
 import Model.RuleNode;
 
 public class Algorithm {
-	public ArrayList<RuleNode> rules = new ArrayList<RuleNode>();
+	public static ArrayList<RuleNode> rules = new ArrayList<RuleNode>();
 	private ArrayList<Coordinates> boxes = new ArrayList<Coordinates>();
 	
 	public Algorithm() {
@@ -63,7 +63,7 @@ public class Algorithm {
 				for (int index = 0; index < lhsRules.size(); index++) {
 					Coordinates rightCoord = lhsRules.get(index);
 					
-					if (testCoord.equals(rightCoord))
+					//if (testCoord.equals(rightCoord))
 				}
 			}
 			
@@ -72,6 +72,22 @@ public class Algorithm {
 		}
 		
 		
+	}
+	
+	public static ArrayList<Coordinates> getRules(String value) {
+		if (rules.isEmpty()) {
+			return null;
+		}
+		
+		ArrayList<Coordinates> lhsCoords = new ArrayList<Coordinates>();
+		
+		for (int i =0; i < rules.size(); ++i){
+			if (value.equals(rules.get(i).getRHS())) {
+				return rules.get(i).getLHSCoords();
+			}
+		}
+		
+		return null;
 	}
 	
 	public static void main(String[] args) {
